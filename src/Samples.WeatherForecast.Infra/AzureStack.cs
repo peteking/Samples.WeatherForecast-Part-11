@@ -9,6 +9,7 @@ class AzureStack : Stack
     {
         var config = new Pulumi.Config();
         
+        // Obtain our docker image from config
         var dockerImage = config.Require("docker-image");
 
         // Resource Group
@@ -26,10 +27,6 @@ class AzureStack : Stack
                 Tier = "BASIC"
             },
         });
-
-        // Current Docker image - this should be the location of your image.
-        // This will need to be dynamically set when we integrate with GitHub Actions.
-        //var dockerImage = "";
 
         // WebApp for Containers
         var app = new WebApp("app-weatherforecastapi-uks-", new WebAppArgs() 
