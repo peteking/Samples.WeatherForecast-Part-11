@@ -1,0 +1,3 @@
+config:
+  azure-native:location: uksouth
+  Samples.WeatherForecast.Infra:docker-image: ghcr.io/peteking/samples-weatherforecast-part-11:3dae90cc47eff6861687444a6e91be89a65bed9f
