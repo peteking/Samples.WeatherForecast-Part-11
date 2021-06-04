@@ -45,3 +45,35 @@ jobs:
           severity-threshold: MEDIUM
           username: ${{ github.repository_owner }}
           password: ${{ secrets.GH_CR }}
+
+  infra:
+    needs: ci
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v2
+        with:
+          # Disabling shallow clone is recommended for improving relevancy of reporting
+          fetch-depth: 0
+
+      - name: Install Pulumi CLI
+        uses: pulumi/action-install-pulumi-cli@v1.1.0
+
+      - name: Set Pulumi config values
+        working-directory: ./src/Samples.WeatherForecast.Infra
+        env:
+          PULUMI_ACCESS_TOKEN: ${{ secrets.PULUMI_ACCESS_TOKEN }}
+        run: |
+          pulumi stack select dev
+          pulumi config set Samples.WeatherForecast.Infra:docker-image ${{ env.image-name }}
+
+      - name: Pulumi Preview
+        uses: pulumi/actions@v3.1.0
+        with:
+          command: preview
+          stack-name: dev
+          work-dir: ./src/Samples.WeatherForecast.Infra
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+        env:
+          PULUMI_ACCESS_TOKEN: ${{ secrets.PULUMI_ACCESS_TOKEN }}
