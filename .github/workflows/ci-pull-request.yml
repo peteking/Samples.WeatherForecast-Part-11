@@ -67,6 +67,7 @@ jobs:
         uses: pulumi/action-install-pulumi-cli@v1.1.0
 
       - name: Set Pulumi config values
+        working-directory: ./src/Samples.WeatherForecast.Infra
         run: |
           pulumi config set Samples.WeatherForecast.Infra:docker-image ${{ env.image-name }}
 
