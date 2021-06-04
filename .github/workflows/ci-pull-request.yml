@@ -9,6 +9,7 @@ on:
 env:
   image-name: ghcr.io/${{ github.repository_owner }}/samples-weatherforecast-part-11:${{ github.sha }}
   image-name-unit-tests: unit-tests:latest
+  PULUMI_ACCESS_TOKEN: ${{ secrets.PULUMI_ACCESS_TOKEN }}
 
 jobs:
   ci:
