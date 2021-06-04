@@ -69,6 +69,7 @@ jobs:
       - name: Set Pulumi config values
         working-directory: ./src/Samples.WeatherForecast.Infra
         run: |
+          pulumi stack select dev
           pulumi config set Samples.WeatherForecast.Infra:docker-image ${{ env.image-name }}
 
       - name: Pulumi Preview
