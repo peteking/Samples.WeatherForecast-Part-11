@@ -75,7 +75,7 @@ jobs:
       - name: Pulumi Preview
         uses: pulumi/actions@v3.1.0
         with:
-          command: Preview
+          command: preview
           stack-name: dev
           work-dir: ./src/Samples.WeatherForecast.Infra
           github-token: ${{ secrets.GITHUB_TOKEN }}
