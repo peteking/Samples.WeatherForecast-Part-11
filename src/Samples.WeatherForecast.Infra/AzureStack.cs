@@ -50,7 +50,7 @@ class AzureStack : Stack
                     new NameValuePairArgs
                     {
                         Name = "WEBSITES_PORT",
-                        Value = "8080" // Our custom image exposes port 80. Adjust for your app as needed.
+                        Value = "8080" // Our custom image exposes port 8080. Adjust for your app as needed.
                     }
                 },
                 AlwaysOn = true,
